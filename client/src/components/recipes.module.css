@@ -1,0 +1,19 @@
+.contenedor{
+    margin-top: 3rem;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    justify-items: center;
+}
+
+.boton{
+    color: aliceblue;
+}
+
+.contenedorBtn{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}

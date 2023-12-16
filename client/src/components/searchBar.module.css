@@ -1,0 +1,27 @@
+.form{
+  display: flex;
+}
+
+.buscador {
+    background: url(../assets/buscar.svg) no-repeat 0px center;
+    background-size: 24px;
+    width: 250px;
+    border: transparent;
+    color: white;
+    padding: 10px 10px 10px 30px;
+    outline: none;
+    font-weight: bold;
+  }
+
+.submit{
+  color: white;
+  font-weight: bold;
+  margin: 2 10px;
+  background-color: blueviolet;
+  border: transparent;
+  margin:10px;
+  padding: 5px;
+  border: solid 1px #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+}
