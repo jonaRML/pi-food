@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { Console } from "node:console";
 import {createRequire} from 'node:module';
 
 const require = createRequire(import.meta.url);
@@ -28,6 +29,16 @@ ruta.get('/prueba/:id',(req,res)=>{
    const item = data.results.find(el => el.id === Number(id));
    res.send(item);
 })
+
+ruta.get('/pruebas',(req,res)=>{
+  const {name} = req.query
+
+  const items = data.results.filter(el=> el.title.toLowerCase().includes(name.toLowerCase()) );
+
+  res.send(items);
+})
+
+
 
 ruta.post('/', async(req,res)=>{
     
