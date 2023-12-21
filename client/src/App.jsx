@@ -4,6 +4,7 @@ import Nav from './components/Nav'
 import Recipes from './components/Recipes'
 import Detail from './components/Detail';
 import {createBrowserRouter , RouterProvider} from 'react-router-dom'
+import Form from './components/Form';
 
 function App() {
 
@@ -20,7 +21,12 @@ function App() {
         {
           path:'detail/:id',
           element : <Detail/>
+        },
+        {
+          path:'createRecipe',
+          element:<Form/>
         }
+
       ]
     }
   ]);

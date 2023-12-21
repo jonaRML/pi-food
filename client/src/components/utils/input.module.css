@@ -1,0 +1,24 @@
+.conteiner{
+    display: flex;
+    flex-direction: column;
+}
+.label{
+    color: rgb(63, 63, 63);
+    margin-bottom: 5px;
+    font-weight: 900;
+}
+.input{
+  border-radius: 5px;
+  width: 480px;
+  padding: 8px 10px;
+  font-size: 1.2rem;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.137);
+  border: none;
+  margin-bottom: 5px;
+}
+
+.input:focus{
+    outline: none;
+    border : 2px solid var(--color-primario);
+    
+}
