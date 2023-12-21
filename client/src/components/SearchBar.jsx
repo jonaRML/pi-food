@@ -6,6 +6,7 @@ const SearchBar = () =>{
 
 const handleSubmit = (e)=>{
     e.preventDefault();
+    
 }
 
      return(
