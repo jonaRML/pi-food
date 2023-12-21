@@ -12,6 +12,12 @@ export const getAllrecipes = createAsyncThunk('getAllrecipes', async()=>{
     return data;
  })
 
+ export const getRecipes = createAsyncThunk('getRecipes', async(valor)=>{
+    const response = await fetch('http://localhost:3000/recipes/pruebas?name='+valor);
+    const data = await response.json();
+    return data;
+ })
+
 const recipeSlice = createSlice({
     name: "recipes",
     initialState:{
@@ -22,12 +28,14 @@ const recipeSlice = createSlice({
     extraReducers: builder =>{
         builder
         .addCase(getRecipe.fulfilled, (state,action)=>{
-            state.recipe = action.payload
+            state.recipe = action.payload;
         } )
         .addCase(getAllrecipes.fulfilled, (state, action)=> {
-            state.recipes = action.payload
-        }
-        )
+            state.recipes = action.payload;
+        })
+        .addCase(getRecipes.fulfilled, (state,action)=>{
+            state.recipes = action.payload;
+        })
     }
 })
 
