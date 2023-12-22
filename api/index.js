@@ -1,7 +1,7 @@
 import express from "express";
 import sequelize from "./db.js";
 import diets from './routes/diets.js';
-import recipes from './routes/Recipes.js';
+import recipes from './routes/recipes.js';
 import cors from 'cors'
 
 const app = express();
