@@ -2,7 +2,7 @@ import {DataTypes}  from "sequelize";
 
 
 export default (sequelize)=>{
-    sequelize.define('recipe',{
+    sequelize.define('Recipe',{
         id:{
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV1,
@@ -23,7 +23,7 @@ export default (sequelize)=>{
             type: DataTypes.INTEGER,
             defaultValue: "00",
         },
-        instrutions:{
+        instructions:{
             type : DataTypes.TEXT,
             allowNull: false
         },

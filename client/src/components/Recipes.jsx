@@ -35,6 +35,23 @@ useEffect( ()=>{
 
     return(
         <>
+
+        <select className={style.select} name='ordenar'>
+            <option style={{color: 'gray'}} >Ordenar por :</option>
+            <option className={style.option} value="Alfabeticamente">Ascendentemente</option>
+            <option className={style.option} value="Healt Score">Descendentemente</option>
+            <option className={style.option} value="Healt Score">Menos Saludable</option>
+            <option className={style.option} value="Healt Score">Mas Saludable</option>
+        </select>
+
+        <select className={style.select} name='ordenar'>
+            <option style={{color: 'gray'}} >Filtrar por tipo de dieta:</option>
+            <option className={style.option} value="Alfabeticamente">Ascendentemente</option>
+            <option className={style.option} value="Healt Score">Descendentemente</option>
+            <option className={style.option} value="Healt Score">Menos Saludable</option>
+            <option className={style.option} value="Healt Score">Mas Saludable</option>
+        </select>
+
         <div className={style.contenedor}>
          {array.map(el=> (<Recipe 
                                 key={el.id} 

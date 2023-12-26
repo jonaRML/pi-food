@@ -17,3 +17,18 @@
     justify-content: center;
     gap: 20px;
 }
+
+.select{
+    padding: 2px 5px;
+    outline: none;
+    
+    border-radius: 5px;
+}
+
+.select:focus{
+    border: 2px solid var(--color-primario);
+}
+
+.select:hover{
+    cursor: pointer;
+}

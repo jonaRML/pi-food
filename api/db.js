@@ -18,5 +18,9 @@ const {recipe, diet} = sequelize.models;
 recipe.belongsToMany(diet, {through: 'RecipeXDiet'});
 diet.belongsToMany(recipe, {through: 'RecipeXDiet'});
 
-export default sequelize;
+
+export default {
+  ...sequelize.models,
+  sequelize
+};
 

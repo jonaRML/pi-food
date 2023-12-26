@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { Console } from "node:console";
+import {Recipe} from "../db.js"
 import {createRequire} from 'node:module';
 
 const require = createRequire(import.meta.url);
@@ -41,7 +41,7 @@ ruta.get('/pruebas',(req,res)=>{
 
 
 ruta.post('/', async(req,res)=>{
-    
+    Recipe.create()
 })
 
 
