@@ -19,8 +19,6 @@ recipe.belongsToMany(diet, {through: 'RecipeXDiet'});
 diet.belongsToMany(recipe, {through: 'RecipeXDiet'});
 
 
-export default {
-  ...sequelize.models,
-  sequelize
-};
+export default sequelize
+
 

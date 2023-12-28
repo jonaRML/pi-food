@@ -1,5 +1,4 @@
 import { Router } from "express";
-import {Recipe} from "../db.js"
 import {createRequire} from 'node:module';
 
 const require = createRequire(import.meta.url);
