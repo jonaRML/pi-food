@@ -1,19 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+const urlHost = import.meta.env.VITE_URL_HOST;
+ console.log(urlHost,"host");
 export const getRecipe = createAsyncThunk('getRecipe', async(id)=>{
-    const response = await fetch(`http://localhost:3000/recipes/prueba/${id}`)
+    const response = await fetch(`${urlHost}/recipes/prueba/${id}`)
     const data = await response.json();
     return data;
 })
 
 export const getAllrecipes = createAsyncThunk('getAllrecipes', async()=>{
-    const response = await fetch("http://localhost:3000/recipes/prueba");
+    const response = await fetch(`${urlHost}/recipes/prueba`);
     const data = await response.json();
     return data;
  })
 
  export const getRecipes = createAsyncThunk('getRecipes', async(valor)=>{
-    const response = await fetch('http://localhost:3000/recipes/pruebas?name='+valor);
+    const response = await fetch(`${urlHost}/recipes/pruebas?name=${valor}`);
     const data = await response.json();
     return data;
  })

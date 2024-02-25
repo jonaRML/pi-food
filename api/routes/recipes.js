@@ -19,7 +19,6 @@ ruta.get('/', async (req,res)=>{
 })
 
 ruta.get('/prueba', async(req,res)=>{
-   
     res.send(data.results);
 })
 
