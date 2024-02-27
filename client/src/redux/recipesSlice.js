@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
 const urlHost = import.meta.env.VITE_URL_HOST;
- console.log(urlHost,"host");
+
 export const getRecipe = createAsyncThunk('getRecipe', async(id)=>{
     const response = await fetch(`${urlHost}/recipes/prueba/${id}`)
     const data = await response.json();
@@ -19,11 +20,18 @@ export const getAllrecipes = createAsyncThunk('getAllrecipes', async()=>{
     return data;
  })
 
+ export const getDiets = createAsyncThunk('getDiets',async()=>{
+    const response = await fetch(`${urlHost}/diets`);
+    return response.json();
+    
+ })
+
 const recipeSlice = createSlice({
     name: "recipes",
     initialState:{
         recipes:[],
-        recipe :""
+        recipe :"",
+        diets: []
     },
     reducers:{},
     extraReducers: builder =>{
@@ -38,6 +46,9 @@ const recipeSlice = createSlice({
         .addCase(getRecipes.fulfilled, (state,action)=>{
             state.recipes = action.payload;
 
+        })
+        .addCase(getDiets.fulfilled, (state,action)=>{
+            state.diets = action.payload;
         })
     }
 })

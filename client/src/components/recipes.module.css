@@ -32,3 +32,14 @@
 .select:hover{
     cursor: pointer;
 }
+
+.option{
+    padding: 10px;
+    font-weight: 600;
+}
+.selectContenedor{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 25px;
+}

@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux'
-import { getAllrecipes } from '../redux/recipesSlice.js'
+import { getAllrecipes, getDiets } from '../redux/recipesSlice.js'
 import { useState,useEffect } from 'react'
 import Recipe from './Recipe.jsx'
 import style from './recipes.module.css'
@@ -11,6 +11,7 @@ const Recipes = ()=>{
 
     const dispatch = useDispatch();
     const recipes = useSelector(state=> state.recipes.recipes );
+    const diets = useSelector(state=> state.recipes.diets);
     
     let array = recipes.slice(starItem, endItem)
 
@@ -29,13 +30,14 @@ const Recipes = ()=>{
 
 useEffect( ()=>{
     dispatch(getAllrecipes())
+    dispatch(getDiets());
 }
 ,[dispatch])
 
 
     return(
         <>
-
+        <div className={style.selectContenedor}>
         <select className={style.select} name='ordenar'>
             <option style={{color: 'gray'}} >Ordenar por :</option>
             <option className={style.option} value="Alfabeticamente">Ascendentemente</option>
@@ -46,12 +48,10 @@ useEffect( ()=>{
 
         <select className={style.select} name='ordenar'>
             <option style={{color: 'gray'}} >Filtrar por tipo de dieta:</option>
-            <option className={style.option} value="Alfabeticamente">Ascendentemente</option>
-            <option className={style.option} value="Healt Score">Descendentemente</option>
-            <option className={style.option} value="Healt Score">Menos Saludable</option>
-            <option className={style.option} value="Healt Score">Mas Saludable</option>
+            {diets.map(el=>(<option className={style.option} key={el.id}>{el.name}</option>))}
         </select>
-
+        </div>
+        
         <div className={style.contenedor}>
          {array.map(el=> (<Recipe 
                                 key={el.id} 

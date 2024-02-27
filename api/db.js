@@ -19,7 +19,7 @@ recipe.belongsToMany(diet, {through: 'RecipeXDiet'});
 diet.belongsToMany(recipe, {through: 'RecipeXDiet'});
 
 const dietas =[
-  {id:'bfac94d6-d445-11ee-a506-0242ac120002',name: 'Gluten Free'},
+  {id:'bcac94d6-d445-11ee-a506-0242ac120002',name: 'Gluten Free'},
   {id:'fe8f0b66-d445-11ee-a506-0242ac120002',name:'Ketogenic'},
   {id:'06392de2-d446-11ee-a506-0242ac120002',name:'Vegetarian'},
   {id:'12ae6934-d446-11ee-a506-0242ac120002',name:'Lacto-Vegetarian'},
