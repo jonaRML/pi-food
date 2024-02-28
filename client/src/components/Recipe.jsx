@@ -2,7 +2,7 @@ import style from './recipe.module.css'
 import {Link} from 'react-router-dom'
 
 const Recipe = (props) =>{
-    const tiposPlatos = props.dishTypes;
+    const diets = props.diets;
     return (
 
         <div className={style.card}>
@@ -13,7 +13,7 @@ const Recipe = (props) =>{
                 <div>
                     <p className={style.p}>Diets</p>
                         <ul className={style.ul}>
-                            {tiposPlatos.map((el, index)=> <li key={index}>{el}</li>)}
+                            {diets.map((el, index)=> <li key={index}>{el}</li>)}
                         </ul>
                 </div>
                 <div>

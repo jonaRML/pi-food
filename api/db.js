@@ -22,15 +22,13 @@ const dietas =[
   {id:'bcac94d6-d445-11ee-a506-0242ac120002',name: 'Gluten Free'},
   {id:'fe8f0b66-d445-11ee-a506-0242ac120002',name:'Ketogenic'},
   {id:'06392de2-d446-11ee-a506-0242ac120002',name:'Vegetarian'},
-  {id:'12ae6934-d446-11ee-a506-0242ac120002',name:'Lacto-Vegetarian'},
-  {id:'183a2bd6-d446-11ee-a506-0242ac120002',name:'Ovo-Vegetarian'},
+  {id:'12ae6934-d446-11ee-a506-0242ac120002',name:'Lacto Ovo Vegetarian'},
   {id:'216f1536-d446-11ee-a506-0242ac120002',name:'Vegan'},
   {id:'26924452-d446-11ee-a506-0242ac120002',name:'Pescetarian'},
   {id:'2c412300-d446-11ee-a506-0242ac120002',name:'Paleo'},
   {id:'379bf446-d446-11ee-a506-0242ac120002',name:'Primal'},
   {id:'3c6f7196-d446-11ee-a506-0242ac120002',name:'Low FODMAP'},
-  {id:'421e6caa-d446-11ee-a506-0242ac120002',name:'Whole0'},
-  {id:'431e6caa-d446-11ee-a506-0242ac120002',name:'Whole03'}];
+  {id:'421e6caa-d446-11ee-a506-0242ac120002',name:'Whole30'}];
 
 diet.bulkCreate(dietas)
     .then(()=>console.log("se insertaron los datos "))

@@ -8,10 +8,24 @@ import style from './recipes.module.css'
 const Recipes = ()=>{
     const [starItem , setStarItem] = useState(0);
     const [endItem, setEndItem] = useState(9);
-
     const dispatch = useDispatch();
     const recipes = useSelector(state=> state.recipes.recipes );
     const diets = useSelector(state=> state.recipes.diets);
+
+    const comparador =(a,b)=>{
+        a = a.title.toLowerCase();
+        b = b.title.toLowerCase();
+
+        if(a.title<b.title){
+            return -1;
+        }else if(a.title>b.title){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+    const ordenados = recipes.sort(comparador);
     
     let array = recipes.slice(starItem, endItem)
 
@@ -53,11 +67,13 @@ useEffect( ()=>{
         </div>
         
         <div className={style.contenedor}>
+         {array = ordenados || array}
+          
          {array.map(el=> (<Recipe 
                                 key={el.id} 
                                 title={el.title} 
                                 image={el.image}
-                                dishTypes={el.dishTypes}
+                                diets={el.diets}
                                 id={el.id}
                                 />))}
         </div>
