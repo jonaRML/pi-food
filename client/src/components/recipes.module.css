@@ -1,5 +1,5 @@
 .contenedor{
-    margin-top: 3rem;
+    margin-top: 2rem;
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(3, 1fr);
@@ -44,3 +44,25 @@
     gap: 40px;
     margin-top: 25px;
 }
+
+@media only screen and (max-width: 600px){
+    .contenedor{
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(9, 1fr);
+    }
+
+    .selectContenedor{
+        flex-wrap: wrap;
+    }
+
+}
+
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+    .contenedor{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+    }
+  }
+
+
+  

@@ -1,10 +1,18 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import style from './form.module.css'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
+import { getDiets } from "../redux/recipesSlice"
+import axios from 'axios'
+
+const urlHost = import.meta.env.VITE_URL_HOST;
 
 const Form = ()=>{
     const [urlImage, setUrlImage] = useState("");
+    const [dietas, setDietas]  = useState([]);
     const [form , setForm] = useState({});
+    const diets = useSelector(state=> state.recipes.diets);
+    const dispatch = useDispatch();
 
     const handleFile = (e)=>{
 
@@ -25,21 +33,53 @@ const Form = ()=>{
         
     }
 
-    const handleSubmit = ()=>{
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        fetch(urlHost+"/recipes", { 
+            method : 'POST',
+            mode: 'cors',
+            headers: {'Content-Type': 'application/json'}, 
+            body: JSON.stringify(form),
+        })
+             .then(response => {
+                if(!response.ok) throw new Error('Ocurrió un error al enviar la solicitud POST');
+                return response.json();})
+             .then(data=> console.log("datos enviados correctamente", data))
+             .catch(error => console.error(error));
+        setForm({
+            titulo : "",
+            descripcion : "",
+            healthScore : "",
+            image : "",
+            instructions : ""
 
-        
-         
+        })     
+
+        //axios.post()
+
+    }
+
+    const handleDiets = (e)=>{
+        let value = e.target.value;
+        if(dietas.includes(value)){
+            setDietas(dietas.filter(el => el !== value));
+        }else{
+            setDietas([...dietas,value]);
+        }
     }
 
     const handleChange = (e)=>{
        setForm({
-        ...input,
+        ...form,
         image: urlImage,
-        [e.target.id] : [e.target.value]
+        diets : dietas,
+        [e.target.id] : e.target.value
        })   
     }
 
-
+    useEffect(()=>{
+        dispatch(getDiets());
+    }, [dispatch])
     
     return (
         <div className={style.conteiner}>
@@ -65,6 +105,20 @@ const Form = ()=>{
 
             {urlImage &&(<img width="250" height="auto" src={urlImage} alt="" />)}
             </div>
+            <div>
+                <label className={style.label}>Selecciona la o las dietas :</label>
+                <div className={style.contenedorCheckBox}> 
+                {diets.map (el =>(<div key={el.id}>
+                                    <input type="checkbox"
+                                           id = {el.name}
+                                           value = {el.name}
+                                           onChange={handleDiets}/>
+                                    <label htmlFor={el.name}>{el.name}</label>
+                                 </div>))}
+                </div>
+                
+            </div>    
+
             <div className={style.contenedor}>
                 <label className={style.label} htmlFor="instructions">Paso a paso :</label>
                 <textarea className={style.textarea} id="instructions" cols="30" rows="5" value={form.instructions}  onChange={handleChange}/>

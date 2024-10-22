@@ -2,7 +2,7 @@ import {DataTypes}  from "sequelize";
 
 
 export default (sequelize)=>{
-    sequelize.define('recipe',{
+    sequelize.define('Recipe',{
         id:{
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV1,

@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux'
-import { getAllrecipes, getDiets } from '../redux/recipesSlice.js'
+import { getAllrecipes, getDiets, ascendente, descendente, menosSaludable, masSaludable } from '../redux/recipesSlice.js'
 import { useState,useEffect } from 'react'
 import Recipe from './Recipe.jsx'
 import style from './recipes.module.css'
@@ -10,24 +10,8 @@ const Recipes = ()=>{
     const [endItem, setEndItem] = useState(9);
     const dispatch = useDispatch();
     const recipes = useSelector(state=> state.recipes.recipes );
+    const [array, setArray] = useState([]);
     const diets = useSelector(state=> state.recipes.diets);
-
-    const comparador =(a,b)=>{
-        a = a.title.toLowerCase();
-        b = b.title.toLowerCase();
-
-        if(a.title<b.title){
-            return -1;
-        }else if(a.title>b.title){
-            return 1;
-        }else{
-            return 0;
-        }
-    }
-
-    const ordenados = recipes.sort(comparador);
-    
-    let array = recipes.slice(starItem, endItem)
 
     const handleAdelante = ()=>{
 
@@ -40,34 +24,52 @@ const Recipes = ()=>{
         setEndItem(endItem-9);
     }
 
-    
+    const handleSelect = (e) =>{
+        if(e.target.value === "Ascendente") {
+            dispatch(ascendente());
+        }else if(e.target.value === "Descendente"){
+            dispatch(descendente());
+        }else if(e.target.value === "Menos Saludable"){
+            dispatch(menosSaludable());
+        }else if(e.target.value === "Mas Saludable"){
+            dispatch(masSaludable())
+        }
+    }
+
+    const handleDiets = (e) =>{
+        let filtrados = recipes.filter(recipe => recipe.diets.includes(e.target.value.toLowerCase()));
+        setArray(filtrados)
+
+    }
 
 useEffect( ()=>{
     dispatch(getAllrecipes())
-    dispatch(getDiets());
-}
-,[dispatch])
+    dispatch(getDiets());  
+},[dispatch])
+
+useEffect(() => {
+    setArray(recipes.slice(starItem,endItem));
+}, [recipes, starItem, endItem]);
 
 
     return(
         <>
         <div className={style.selectContenedor}>
-        <select className={style.select} name='ordenar'>
+        <select className={style.select} name='ordenar' onChange={handleSelect}>
             <option style={{color: 'gray'}} >Ordenar por :</option>
-            <option className={style.option} value="Alfabeticamente">Ascendentemente</option>
-            <option className={style.option} value="Healt Score">Descendentemente</option>
-            <option className={style.option} value="Healt Score">Menos Saludable</option>
-            <option className={style.option} value="Healt Score">Mas Saludable</option>
+            <option className={style.option} value="Ascendente">Ascendentemente</option>
+            <option className={style.option} value="Descendente">Descendentemente</option>
+            <option className={style.option} value="Menos Saludable">Menos Saludable</option>
+            <option className={style.option} value="Mas Saludable">Mas Saludable</option>
         </select>
 
-        <select className={style.select} name='ordenar'>
+        <select className={style.select} name='ordenar' onChange={handleDiets}>
             <option style={{color: 'gray'}} >Filtrar por tipo de dieta:</option>
-            {diets.map(el=>(<option className={style.option} key={el.id}>{el.name}</option>))}
+            {diets.map(el=>(<option className={style.option} value={el.name} key={el.id}>{el.name}</option>))}
         </select>
         </div>
         
         <div className={style.contenedor}>
-         {array = ordenados || array}
           
          {array.map(el=> (<Recipe 
                                 key={el.id} 
@@ -75,6 +77,7 @@ useEffect( ()=>{
                                 image={el.image}
                                 diets={el.diets}
                                 id={el.id}
+                                health={el.healthScore}
                                 />))}
         </div>
         <div className={style.contenedorBtn}>

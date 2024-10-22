@@ -1,9 +1,11 @@
 import { Router } from "express";
 import {createRequire} from 'node:module';
+import sequelize from "../db.js";
 
 const require = createRequire(import.meta.url);
 const data = require('../utils/data.json');
 
+const {Recipe} = sequelize.models;
 
 const ruta = Router();
 
@@ -39,7 +41,12 @@ ruta.get('/pruebas',(req,res)=>{
 
 
 ruta.post('/', async(req,res)=>{
-    Recipe.create()
+    console.log(req.body);
+    
+    const recipe  = await Recipe.create(req.body)
+    console.log(recipe)
+
+    res.status(200).json({ message: req.body });
 })
 
 

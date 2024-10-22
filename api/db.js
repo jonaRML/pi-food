@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
-import Recipe from "./models/Recipe.js";
-import Diet from "./models/Diet.js";
+import recipe from "./models/Recipe.js";
+import diet from "./models/Diet.js";
 
 const sequelize = new Sequelize('postgres://postgres:postgres@localhost:5432/pi_food',{
     logging: false, // set to console.log to see the raw SQL queries
@@ -8,15 +8,15 @@ const sequelize = new Sequelize('postgres://postgres:postgres@localhost:5432/pi_
   });
 
 
-Recipe(sequelize);
-Diet(sequelize);
+recipe(sequelize);
+diet(sequelize);
 
 console.log(sequelize.models);
 
-const {recipe, diet} = sequelize.models;
+const {Recipe, Diet} = sequelize.models;
 
-recipe.belongsToMany(diet, {through: 'RecipeXDiet'});
-diet.belongsToMany(recipe, {through: 'RecipeXDiet'});
+Recipe.belongsToMany(Diet, {through: 'RecipeXDiet'});
+Diet.belongsToMany(Recipe, {through: 'RecipeXDiet'});
 
 const dietas =[
   {id:'bcac94d6-d445-11ee-a506-0242ac120002',name: 'Gluten Free'},
@@ -30,10 +30,9 @@ const dietas =[
   {id:'3c6f7196-d446-11ee-a506-0242ac120002',name:'Low FODMAP'},
   {id:'421e6caa-d446-11ee-a506-0242ac120002',name:'Whole30'}];
 
-diet.bulkCreate(dietas)
+Diet.bulkCreate(dietas)
     .then(()=>console.log("se insertaron los datos "))
     .catch(error=> console.log("hubo un error", error))
-
 
 export default sequelize
 

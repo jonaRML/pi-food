@@ -8,7 +8,9 @@ const Nav =()=>{
             <div className={style.contenedor}>
              <nav>
                 <ul className={style.ul}>
+                    <Link to='/'>
                     <li className={style.li}>home</li>
+                    </Link>
                     <li className={style.li}>about</li>
                     <Link to='/createRecipe'>
                         <li className={style.li}>createRecipe</li>

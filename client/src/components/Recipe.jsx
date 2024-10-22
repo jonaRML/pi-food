@@ -1,4 +1,5 @@
 import style from './recipe.module.css'
+import health from '../assets/health.svg'
 import {Link} from 'react-router-dom'
 
 const Recipe = (props) =>{
@@ -9,6 +10,10 @@ const Recipe = (props) =>{
             
             <img className={style.img} src={props.image} alt="" />
             <h4 className={style.title}>{props.title}</h4>
+            <div className={style.health}>
+            <img src={health} alt='icon' />
+            <p>{props.health}</p>
+            </div>
             <div className={style.secondCointener}>
                 <div>
                     <p className={style.p}>Diets</p>

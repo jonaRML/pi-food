@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 
 export default (sequelize)=>{
-    sequelize.define('diet',{
+    sequelize.define('Diet',{
         id:{
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV1,
